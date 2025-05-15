@@ -5,7 +5,7 @@ const generateToken = (user) => {
   return jwt.sign(
     { id: user?._id, role: user?.role }, 
     process.env.ACCESS_TOKEN, 
-    { expiresIn: '1d' });
+    { expiresIn: '30m' });
 };
 
 exports.register = async (req, res) => {
