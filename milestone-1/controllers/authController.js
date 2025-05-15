@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
   const { firstName, lastName, phoneNo, email, password, role } = req.body
 
   try {
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email })
 
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' })
@@ -53,6 +53,12 @@ exports.login = async (req, res) => {
 
     res.json({
       message: 'Login successful',
+      userInfo: {
+        Firstname: user?.firstName, 
+        Lastname: user?.lastName, 
+        PhoneNumber: user?.phoneNo,
+        Email : user?.email
+      },
       token: generateToken(user)
     });
   } catch (err) {
